@@ -1,0 +1,520 @@
+{
+  "users": [
+    {
+      "_id": "user_farmer_1",
+      "name": "Ramesh Patel",
+      "email": "farmer@annsetu.com",
+      "passwordHash": "$2a$10$wO8o0uO0X6dF0e0u0u0u0eO0X6dF0e0u0u0u0eO0X6dF0e0u0u0u0",
+      "role": "farmer",
+      "phone": "+91-9876543211",
+      "state": "Madhya Pradesh",
+      "district": "Sehore",
+      "village": "Ashta Gram",
+      "farmSize": "12 Acres",
+      "rating": 4.9,
+      "isVerified": true,
+      "bio": "3rd generation organic wheat and pulse farmer passionate about natural farming without synthetic pesticides.",
+      "avatar": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=150&auto=format&fit=crop&q=80",
+      "createdAt": "2026-11-04T15:12:46.794Z"
+    },
+    {
+      "_id": "user_farmer_2",
+      "name": "Gurpreet Singh",
+      "email": "gurpreet@annsetu.com",
+      "passwordHash": "$2a$10$wO8o0uO0X6dF0e0u0u0u0eO0X6dF0e0u0u0u0eO0X6dF0e0u0u0u0",
+      "role": "farmer",
+      "phone": "+91-9876543212",
+      "state": "Punjab",
+      "district": "Karnal",
+      "village": "Taraori",
+      "farmSize": "25 Acres",
+      "rating": 4.8,
+      "isVerified": true,
+      "bio": "Specializing in export-grade aromatic Basmati paddy & golden mustard.",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    },
+    {
+      "_id": "user_buyer_1",
+      "name": "Sunil Sharma",
+      "email": "buyer@annsetu.com",
+      "passwordHash": "$2a$10$wO8o0uO0X6dF0e0u0u0u0eO0X6dF0e0u0u0u0eO0X6dF0e0u0u0u0",
+      "role": "buyer",
+      "phone": "+91-9876543213",
+      "businessName": "Sharma Agri Wholesale & Retail",
+      "businessType": "Wholesaler / Supermarket Supplier",
+      "state": "Delhi NCR",
+      "district": "Azadpur Mandi Area",
+      "deliveryAddress": "Shop 42, Block C, Wholesale Market, New Delhi 110033",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    },
+    {
+      "_id": "user_admin_1",
+      "name": "AnnSetu Admin Team",
+      "email": "admin@annsetu.com",
+      "passwordHash": "$2a$10$wO8o0uO0X6dF0e0u0u0u0eO0X6dF0e0u0u0u0eO0X6dF0e0u0u0u0",
+      "role": "admin",
+      "phone": "+91-9876543210",
+      "state": "National Headquarters",
+      "district": "New Delhi",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    }
+  ],
+  "products": [
+    {
+      "_id": "prod_1",
+      "title": "Golden Sharbati Wheat (Sehore Special)",
+      "category": "Grains & Cereals",
+      "variety": "C-306 Sharbati",
+      "description": "Naturally sweet, golden-grain Sharbati wheat grown in the black soil of Sehore, MP. Zero chemical pesticide residues, high protein content (14%), ideal for soft and fluffy chapatis.",
+      "pricePerUnit": 38,
+      "unit": "kg",
+      "availableQuantity": 4500,
+      "minOrderQuantity": 50,
+      "harvestDate": "2026-03-20",
+      "isOrganic": true,
+      "state": "Madhya Pradesh",
+      "location": "Ashta APMC Hub, Sehore",
+      "farmerId": "user_farmer_1",
+      "farmerName": "Ramesh Patel",
+      "farmerPhone": "+91-9876543211",
+      "images": [
+        "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&auto=format&fit=crop&q=80"
+      ],
+      "mandiBenchmark": 32,
+      "retailBenchmark": 48,
+      "rating": 4.9,
+      "reviewsCount": 38,
+      "status": "available",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    },
+    {
+      "_id": "prod_2",
+      "title": "Royal 1121 Traditional Basmati Rice",
+      "category": "Grains & Cereals",
+      "variety": "Pusa 1121 Extra Long",
+      "description": "Aged 18 months traditional Basmati rice. Average grain length 8.4mm with authentic rich aroma. Direct from the fertile belt of Karnal.",
+      "pricePerUnit": 85,
+      "unit": "kg",
+      "availableQuantity": 675,
+      "minOrderQuantity": 25,
+      "harvestDate": "2025-11-10",
+      "isOrganic": false,
+      "state": "Punjab",
+      "location": "Taraori Mandi Hub, Karnal",
+      "farmerId": "user_farmer_2",
+      "farmerName": "Gurpreet Singh",
+      "farmerPhone": "+91-9876543212",
+      "images": [
+        "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&auto=format&fit=crop&q=80"
+      ],
+      "mandiBenchmark": 74,
+      "retailBenchmark": 110,
+      "rating": 4.8,
+      "reviewsCount": 42,
+      "status": "available",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    },
+    {
+      "_id": "prod_3",
+      "title": "GI-Tagged Ratnagiri Alphonso Mangoes",
+      "category": "Fruits",
+      "variety": "Hapus (Export Grade)",
+      "description": "Naturally ripened on tree, chemical-free carbide-free Ratnagiri Alphonso mangoes. Rich saffron pulp, sweet fragrant aroma, packed in export cushioned crates.",
+      "pricePerUnit": 140,
+      "unit": "kg",
+      "availableQuantity": 200,
+      "minOrderQuantity": 10,
+      "harvestDate": "2026-04-12",
+      "isOrganic": true,
+      "state": "Maharashtra",
+      "location": "Ratnagiri Coastal Orchards",
+      "farmerId": "user_farmer_1",
+      "farmerName": "Ramesh Patel",
+      "farmerPhone": "+91-9876543211",
+      "images": [
+        "https://images.unsplash.com/photo-1553279768-865429fa0078?w=600&auto=format&fit=crop&q=80"
+      ],
+      "mandiBenchmark": 115,
+      "retailBenchmark": 190,
+      "rating": 5,
+      "reviewsCount": 64,
+      "status": "available",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    },
+    {
+      "_id": "prod_4",
+      "title": "Crisp Red Nashik Summer Onions",
+      "category": "Vegetables",
+      "variety": "Garwa Red Onion",
+      "description": "Well-cured firm Nashik onions with tight papery skins. Excellent shelf life of up to 4 months under dry storage. Graded medium-large 55mm+ size.",
+      "pricePerUnit": 24,
+      "unit": "kg",
+      "availableQuantity": 8000,
+      "minOrderQuantity": 100,
+      "harvestDate": "2026-04-05",
+      "isOrganic": false,
+      "state": "Maharashtra",
+      "location": "Lasalgaon Mandi, Nashik",
+      "farmerId": "user_farmer_1",
+      "farmerName": "Ramesh Patel",
+      "farmerPhone": "+91-9876543211",
+      "images": [
+        "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=600&auto=format&fit=crop&q=80"
+      ],
+      "mandiBenchmark": 19,
+      "retailBenchmark": 35,
+      "rating": 4.7,
+      "reviewsCount": 29,
+      "status": "available",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    },
+    {
+      "_id": "prod_5",
+      "title": "Pure High-Curcumin Lakadong Turmeric",
+      "category": "Spices & Herbs",
+      "variety": "Lakadong Organic",
+      "description": "World-renowned Lakadong turmeric powder with exceptional 7.5% natural curcumin content. Certified organic, ground with stone mill to preserve volatile oils.",
+      "pricePerUnit": 220,
+      "unit": "kg",
+      "availableQuantity": 650,
+      "minOrderQuantity": 5,
+      "harvestDate": "2026-02-18",
+      "isOrganic": true,
+      "state": "Meghalaya",
+      "location": "Jaintia Hills Organic Co-op",
+      "farmerId": "user_farmer_2",
+      "farmerName": "Gurpreet Singh",
+      "farmerPhone": "+91-9876543212",
+      "images": [
+        "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=600&auto=format&fit=crop&q=80"
+      ],
+      "mandiBenchmark": 180,
+      "retailBenchmark": 310,
+      "rating": 4.9,
+      "reviewsCount": 51,
+      "status": "available",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    },
+    {
+      "_id": "prod_6",
+      "title": "Desi Brown Chana (Bengal Gram)",
+      "category": "Pulses",
+      "variety": "JG-11 Desi Chickpea",
+      "description": "Direct farm harvested desi chana. Machine cleaned, stones removed, high protein content (22%). Perfect for sprouting, besan milling, or wholesale distribution.",
+      "pricePerUnit": 68,
+      "unit": "kg",
+      "availableQuantity": 3000,
+      "minOrderQuantity": 50,
+      "harvestDate": "2026-03-15",
+      "isOrganic": true,
+      "state": "Madhya Pradesh",
+      "location": "Bhopal Mandi Yard",
+      "farmerId": "user_farmer_1",
+      "farmerName": "Ramesh Patel",
+      "farmerPhone": "+91-9876543211",
+      "images": [
+        "https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=600&auto=format&fit=crop&q=80"
+      ],
+      "mandiBenchmark": 59,
+      "retailBenchmark": 92,
+      "rating": 4.8,
+      "reviewsCount": 33,
+      "status": "available",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    },
+    {
+      "_id": "prod_7",
+      "title": "Kinnaur Royal Crisp Apples",
+      "category": "Fruits",
+      "variety": "Royal Delicious",
+      "description": "High altitude (8,500 ft) Kinnaur apples. Crisp, juicy, vibrant dark crimson skin with natural sweetness. Hand picked, graded and packed with protective trays.",
+      "pricePerUnit": 115,
+      "unit": "kg",
+      "availableQuantity": 1800,
+      "minOrderQuantity": 20,
+      "harvestDate": "2025-10-25",
+      "isOrganic": true,
+      "state": "Himachal Pradesh",
+      "location": "Kinnaur Valley Orchards",
+      "farmerId": "user_farmer_2",
+      "farmerName": "Gurpreet Singh",
+      "farmerPhone": "+91-9876543212",
+      "images": [
+        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=600&auto=format&fit=crop&q=80"
+      ],
+      "mandiBenchmark": 95,
+      "retailBenchmark": 160,
+      "rating": 4.9,
+      "reviewsCount": 47,
+      "status": "available",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    },
+    {
+      "_id": "prod_8",
+      "title": "A2 Gir Cow Bilona Vedic Ghee",
+      "category": "Dairy & Organic",
+      "variety": "Traditional Bilona Method",
+      "description": "Prepared from curd of free-grazing indigenous Gir cows using traditional wooden bilona churning. Golden granular texture, rich aroma, zero preservatives.",
+      "pricePerUnit": 640,
+      "unit": "kg",
+      "availableQuantity": 400,
+      "minOrderQuantity": 2,
+      "harvestDate": "2026-04-18",
+      "isOrganic": true,
+      "state": "Gujarat",
+      "location": "Anand Gaushala Cluster",
+      "farmerId": "user_farmer_1",
+      "farmerName": "Ramesh Patel",
+      "farmerPhone": "+91-9876543211",
+      "images": [
+        "https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=600&auto=format&fit=crop&q=80"
+      ],
+      "mandiBenchmark": 550,
+      "retailBenchmark": 850,
+      "rating": 5,
+      "reviewsCount": 88,
+      "status": "available",
+      "createdAt": "2026-11-04T15:12:46.795Z"
+    }
+  ],
+  "mandiRates": [
+    {
+      "_id": "mandi_1",
+      "commodity": "Sharbati Wheat",
+      "category": "Grains",
+      "mandi": "Sehore APMC",
+      "state": "Madhya Pradesh",
+      "minPrice": 3100,
+      "maxPrice": 3450,
+      "modalPrice": 3250,
+      "unit": "Quintal",
+      "trend": "up",
+      "lastUpdated": "Today, 10:30 AM"
+    },
+    {
+      "_id": "mandi_2",
+      "commodity": "1121 Basmati Paddy",
+      "category": "Grains",
+      "mandi": "Karnal Mandi",
+      "state": "Haryana",
+      "minPrice": 4200,
+      "maxPrice": 4750,
+      "modalPrice": 4500,
+      "unit": "Quintal",
+      "trend": "stable",
+      "lastUpdated": "Today, 11:00 AM"
+    },
+    {
+      "_id": "mandi_3",
+      "commodity": "Red Onion",
+      "category": "Vegetables",
+      "mandi": "Lasalgaon Mandi",
+      "state": "Maharashtra",
+      "minPrice": 1800,
+      "maxPrice": 2350,
+      "modalPrice": 2050,
+      "unit": "Quintal",
+      "trend": "down",
+      "lastUpdated": "Today, 09:15 AM"
+    },
+    {
+      "_id": "mandi_4",
+      "commodity": "Yellow Mustard Seed",
+      "category": "Oilseeds",
+      "mandi": "Alwar Mandi",
+      "state": "Rajasthan",
+      "minPrice": 5400,
+      "maxPrice": 5950,
+      "modalPrice": 5720,
+      "unit": "Quintal",
+      "trend": "up",
+      "lastUpdated": "Today, 10:45 AM"
+    },
+    {
+      "_id": "mandi_5",
+      "commodity": "Desi Chickpea (Chana)",
+      "category": "Pulses",
+      "mandi": "Bhopal Mandi",
+      "state": "Madhya Pradesh",
+      "minPrice": 5800,
+      "maxPrice": 6300,
+      "modalPrice": 6100,
+      "unit": "Quintal",
+      "trend": "up",
+      "lastUpdated": "Today, 10:00 AM"
+    },
+    {
+      "_id": "mandi_6",
+      "commodity": "Soybean",
+      "category": "Oilseeds",
+      "mandi": "Indore Mandi",
+      "state": "Madhya Pradesh",
+      "minPrice": 4300,
+      "maxPrice": 4800,
+      "modalPrice": 4620,
+      "unit": "Quintal",
+      "trend": "stable",
+      "lastUpdated": "Today, 11:15 AM"
+    },
+    {
+      "_id": "mandi_7",
+      "commodity": "Cotton (Kapas)",
+      "category": "Fiber",
+      "mandi": "Rajkot APMC",
+      "state": "Gujarat",
+      "minPrice": 7100,
+      "maxPrice": 7800,
+      "modalPrice": 7450,
+      "unit": "Quintal",
+      "trend": "up",
+      "lastUpdated": "Today, 10:20 AM"
+    },
+    {
+      "_id": "mandi_8",
+      "commodity": "Potato (Jyoti)",
+      "category": "Vegetables",
+      "mandi": "Agra Mandi",
+      "state": "Uttar Pradesh",
+      "minPrice": 1600,
+      "maxPrice": 2100,
+      "modalPrice": 1850,
+      "unit": "Quintal",
+      "trend": "down",
+      "lastUpdated": "Today, 09:40 AM"
+    }
+  ],
+  "orders": [
+    {
+      "_id": "ord_1793806473900",
+      "orderNumber": "AS-2026-1689",
+      "orderStatus": "placed",
+      "paymentStatus": "paid",
+      "timeline": [
+        {
+          "status": "placed",
+          "timestamp": "2026-11-04T15:34:33.900Z",
+          "message": "Order placed by buyer"
+        }
+      ],
+      "createdAt": "2026-11-04T15:34:33.900Z",
+      "buyerId": "user_buyer_1",
+      "buyerName": "Sunil Sharma",
+      "buyerPhone": "+91-9876543213",
+      "items": [
+        {
+          "productId": "prod_2",
+          "title": "Royal 1121 Traditional Basmati Rice",
+          "quantity": 2525,
+          "unit": "kg",
+          "unitPrice": 85,
+          "total": 214625,
+          "farmerId": "user_farmer_2",
+          "farmerName": "Gurpreet Singh"
+        },
+        {
+          "productId": "prod_3",
+          "title": "GI-Tagged Ratnagiri Alphonso Mangoes",
+          "quantity": 1000,
+          "unit": "kg",
+          "unitPrice": 140,
+          "total": 140000,
+          "farmerId": "user_farmer_1",
+          "farmerName": "Ramesh Patel"
+        }
+      ],
+      "totalAmount": 354625,
+      "deliveryFee": 350,
+      "grandTotal": 354975,
+      "deliveryAddress": {
+        "fullName": "Sunil Sharma",
+        "phone": "+91-9876543213",
+        "addressLine": "Shop 42, Block C, Wholesale Market",
+        "city": "New Delhi",
+        "state": "Delhi NCR",
+        "pincode": "110033"
+      },
+      "deliveryType": "Direct Farm Dispatch (Trucking)",
+      "paymentMethod": "UPI Online (Instant QR/Transfer)"
+    },
+    {
+      "_id": "ord_101",
+      "orderNumber": "AS-2026-9041",
+      "buyerId": "user_buyer_1",
+      "buyerName": "Sunil Sharma",
+      "buyerPhone": "+91-9876543213",
+      "items": [
+        {
+          "productId": "prod_1",
+          "title": "Golden Sharbati Wheat (Sehore Special)",
+          "quantity": 200,
+          "unit": "kg",
+          "unitPrice": 38,
+          "total": 7600,
+          "farmerId": "user_farmer_1",
+          "farmerName": "Ramesh Patel"
+        },
+        {
+          "productId": "prod_6",
+          "title": "Desi Brown Chana (Bengal Gram)",
+          "quantity": 100,
+          "unit": "kg",
+          "unitPrice": 68,
+          "total": 6800,
+          "farmerId": "user_farmer_1",
+          "farmerName": "Ramesh Patel"
+        }
+      ],
+      "totalAmount": 14400,
+      "deliveryFee": 650,
+      "grandTotal": 15050,
+      "deliveryAddress": {
+        "fullName": "Sunil Sharma",
+        "phone": "+91-9876543213",
+        "addressLine": "Shop 42, Block C, Wholesale Market",
+        "city": "New Delhi",
+        "state": "Delhi NCR",
+        "pincode": "110033"
+      },
+      "deliveryType": "Direct Farm Dispatch (Trucking)",
+      "paymentMethod": "UPI Online (Instant Verified)",
+      "paymentStatus": "paid",
+      "orderStatus": "dispatched",
+      "timeline": [
+        {
+          "status": "placed",
+          "timestamp": "2026-11-03T09:30:00Z",
+          "message": "Order placed by buyer"
+        },
+        {
+          "status": "confirmed",
+          "timestamp": "2026-11-03T11:15:00Z",
+          "message": "Accepted by farmer Ramesh Patel"
+        },
+        {
+          "status": "dispatched",
+          "timestamp": "2026-11-04T07:45:00Z",
+          "message": "Produce loaded on logistics vehicle #MP-04-TR-9122"
+        }
+      ],
+      "createdAt": "2026-11-03T09:30:00Z"
+    }
+  ],
+  "inquiries": [
+    {
+      "_id": "inq_1",
+      "productId": "prod_1",
+      "productTitle": "Golden Sharbati Wheat (Sehore Special)",
+      "buyerId": "user_buyer_1",
+      "buyerName": "Sunil Sharma",
+      "buyerPhone": "+91-9876543213",
+      "farmerId": "user_farmer_1",
+      "message": "Namaste Ramesh ji. I need 1000 kg for my retail chain. Can we close at ₹36.50/kg if I arrange logistics directly?",
+      "farmerReply": "Namaste Sunil ji. We can agree on ₹37.00/kg for 1000 kg since it is A-grade graded produce. Please proceed to place order with direct pickup option.",
+      "status": "replied",
+      "createdAt": "2026-11-03T14:20:00Z"
+    }
+  ]
+}

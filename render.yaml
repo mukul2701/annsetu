@@ -1,0 +1,18 @@
+﻿services:
+  - type: web
+    name: annsetu
+    env: node
+    plan: free
+    buildCommand: npm install && npm install --prefix client && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 10000
+      - key: DEMO_LOGIN_ENABLED
+        value: "false"
+      - key: MONGO_URI
+        sync: false
