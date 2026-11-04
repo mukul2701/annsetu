@@ -73,7 +73,7 @@ async function connectDB() {
     }
   } else {
     console.log('ℹ️ [AnnSetu DB] MONGO_URI not set. Running with built-in persistent local store.');
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production' && process.env.MONGO_URI_REQUIRED === 'true') {
       throw new Error('MONGO_URI must be configured in production to persist application data.');
     }
   }
