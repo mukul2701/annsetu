@@ -9,13 +9,13 @@
 
 There is no permanent live URL yet. The previous `trycloudflare.com` address was a temporary tunnel and is no longer advertised as live. `render.yaml` is configured for Render Blueprint deployment. After connecting this GitHub repository in Render and deploying, Render will assign the service URL; save that URL in `HOSTED_LINK.txt`.
 
-For durable user data, configure `MONGO_URI` to a persistent MongoDB database. The built-in JSON store is suitable for local development only: many hosted instances use an ephemeral filesystem. Set a strong `JWT_SECRET` in the host environment. Demo login and seed reset are disabled in production.
+For durable user data, configure `MONGO_URI` to a MongoDB database. Production startup now requires this setting and `JWT_SECRET`. Local development can use the built-in JSON store. Demo login and seed reset are disabled in production.
 
 ---
 
 ## 🔑 Demo accounts
 
-Demo-login UI buttons remain for local evaluation. The demo endpoint only operates when `DEMO_LOGIN_ENABLED=true`; keep it disabled on a public deployment. Do not use the seeded example accounts for real data.
+Demo-login UI buttons remain for local evaluation. Set `DEMO_LOGIN_ENABLED=true` in local `.env` to use the demo endpoint; keep it disabled on a public deployment. Do not use seeded sample accounts for real data.
 
 | Role | Email | Notes |
 | :--- | :--- | :--- |

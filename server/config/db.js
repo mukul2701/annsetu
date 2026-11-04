@@ -9,7 +9,17 @@ let isMongoConnected = false;
 let memoryStore = null;
 
 // Initialize file store if needed
-function loadStore() {
+async function loadStore() {
+  if (isMongoConnected) {
+    const collection = mongoose.connection.collection('annsetu_state');
+    let record = await collection.findOne({ _id: 'primary' });
+    if (!record) {
+      record = { _id: 'primary', data: JSON.parse(JSON.stringify(initialData)) };
+      await collection.insertOne(record);
+    }
+    memoryStore = record.data;
+    return memoryStore;
+  }
   if (memoryStore) return memoryStore;
   try {
     if (fs.existsSync(DB_FILE_PATH)) {
@@ -17,17 +27,25 @@ function loadStore() {
       memoryStore = JSON.parse(raw);
     } else {
       memoryStore = JSON.parse(JSON.stringify(initialData));
-      saveStore();
+      await saveStore();
     }
   } catch (err) {
     console.warn('[AnnSetu DB] Error reading file store, initializing fresh data:', err.message);
     memoryStore = JSON.parse(JSON.stringify(initialData));
-    saveStore();
+    await saveStore();
   }
   return memoryStore;
 }
 
-function saveStore() {
+async function saveStore() {
+  if (isMongoConnected) {
+    await mongoose.connection.collection('annsetu_state').replaceOne(
+      { _id: 'primary' },
+      { _id: 'primary', data: memoryStore },
+      { upsert: true }
+    );
+    return;
+  }
   try {
     fs.writeFileSync(DB_FILE_PATH, JSON.stringify(memoryStore, null, 2), 'utf-8');
   } catch (err) {
@@ -44,18 +62,23 @@ async function connectDB() {
         serverSelectionTimeoutMS: 5000
       });
       isMongoConnected = true;
+      await loadStore();
       console.log('✅ [AnnSetu DB] MongoDB Connected Successfully!');
       return true;
     } catch (err) {
       console.warn('⚠️ [AnnSetu DB] MongoDB connection error:', err.message);
       console.log('⚡ [AnnSetu DB] Switching to Built-in Resilient Store (Zero Downtime Mode)...');
       isMongoConnected = false;
+      if (process.env.NODE_ENV === 'production') throw err;
     }
   } else {
     console.log('ℹ️ [AnnSetu DB] MONGO_URI not set. Running with built-in persistent local store.');
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('MONGO_URI must be configured in production to persist application data.');
+    }
   }
 
-  loadStore();
+  await loadStore();
   return false;
 }
 
@@ -65,19 +88,19 @@ const db = {
 
   // Users
   getUsers: async () => {
-    loadStore();
+    await loadStore();
     return memoryStore.users;
   },
   findUserById: async (id) => {
-    loadStore();
+    await loadStore();
     return memoryStore.users.find(u => u._id === id);
   },
   findUserByEmail: async (email) => {
-    loadStore();
+    await loadStore();
     return memoryStore.users.find(u => u.email.toLowerCase() === email.toLowerCase());
   },
   createUser: async (userData) => {
-    loadStore();
+    await loadStore();
     const newUser = {
       _id: 'user_' + Date.now(),
       rating: 5.0,
@@ -89,13 +112,13 @@ const db = {
       ...userData
     };
     memoryStore.users.push(newUser);
-    saveStore();
+    await saveStore();
     return newUser;
   },
 
   // Products
   getProducts: async ({ category, state, search, organic, farmerId, sort } = {}) => {
-    loadStore();
+    await loadStore();
     let prods = [...memoryStore.products];
 
     if (farmerId) {
@@ -135,11 +158,11 @@ const db = {
     return prods;
   },
   findProductById: async (id) => {
-    loadStore();
+    await loadStore();
     return memoryStore.products.find(p => p._id === id);
   },
   createProduct: async (productData) => {
-    loadStore();
+    await loadStore();
     const newProduct = {
       _id: 'prod_' + Date.now(),
       rating: 5.0,
@@ -149,29 +172,29 @@ const db = {
       ...productData
     };
     memoryStore.products.unshift(newProduct);
-    saveStore();
+    await saveStore();
     return newProduct;
   },
   updateProduct: async (id, updates) => {
-    loadStore();
+    await loadStore();
     const idx = memoryStore.products.findIndex(p => p._id === id);
     if (idx === -1) return null;
     memoryStore.products[idx] = { ...memoryStore.products[idx], ...updates, updatedAt: new Date().toISOString() };
-    saveStore();
+    await saveStore();
     return memoryStore.products[idx];
   },
   deleteProduct: async (id) => {
-    loadStore();
+    await loadStore();
     const idx = memoryStore.products.findIndex(p => p._id === id);
     if (idx === -1) return false;
     memoryStore.products.splice(idx, 1);
-    saveStore();
+    await saveStore();
     return true;
   },
 
   // Orders
   getOrders: async ({ buyerId, farmerId } = {}) => {
-    loadStore();
+    await loadStore();
     let ords = [...memoryStore.orders];
     if (buyerId) {
       ords = ords.filter(o => o.buyerId === buyerId);
@@ -182,11 +205,11 @@ const db = {
     return ords.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   },
   findOrderById: async (id) => {
-    loadStore();
+    await loadStore();
     return memoryStore.orders.find(o => o._id === id);
   },
   createOrder: async (orderData) => {
-    loadStore();
+    await loadStore();
     const newOrder = {
       _id: 'ord_' + Date.now(),
       orderNumber: 'AS-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000),
@@ -213,11 +236,11 @@ const db = {
     }
 
     memoryStore.orders.unshift(newOrder);
-    saveStore();
+    await saveStore();
     return newOrder;
   },
   updateOrderStatus: async (id, status, note = '') => {
-    loadStore();
+    await loadStore();
     const order = memoryStore.orders.find(o => o._id === id);
     if (!order) return null;
     order.orderStatus = status;
@@ -228,13 +251,13 @@ const db = {
       timestamp: new Date().toISOString(),
       message: note || `Order updated to ${status}`
     });
-    saveStore();
+    await saveStore();
     return order;
   },
 
   // Mandi Rates
   getMandiRates: async ({ state, category, search } = {}) => {
-    loadStore();
+    await loadStore();
     let rates = [...memoryStore.mandiRates];
     if (state && state !== 'All') {
       rates = rates.filter(r => r.state.toLowerCase() === state.toLowerCase());
@@ -255,14 +278,14 @@ const db = {
 
   // Inquiries
   getInquiries: async ({ buyerId, farmerId } = {}) => {
-    loadStore();
+    await loadStore();
     let inqs = [...(memoryStore.inquiries || [])];
     if (buyerId) inqs = inqs.filter(i => i.buyerId === buyerId);
     if (farmerId) inqs = inqs.filter(i => i.farmerId === farmerId);
     return inqs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   },
   createInquiry: async (inquiryData) => {
-    loadStore();
+    await loadStore();
     if (!memoryStore.inquiries) memoryStore.inquiries = [];
     const newInquiry = {
       _id: 'inq_' + Date.now(),
@@ -271,24 +294,24 @@ const db = {
       ...inquiryData
     };
     memoryStore.inquiries.unshift(newInquiry);
-    saveStore();
+    await saveStore();
     return newInquiry;
   },
   replyInquiry: async (id, replyText) => {
-    loadStore();
+    await loadStore();
     if (!memoryStore.inquiries) return null;
     const inq = memoryStore.inquiries.find(i => i._id === id);
     if (!inq) return null;
     inq.farmerReply = replyText;
     inq.status = 'replied';
     inq.repliedAt = new Date().toISOString();
-    saveStore();
+    await saveStore();
     return inq;
   },
 
   // Analytics & Stats
   getAnalytics: async () => {
-    loadStore();
+    await loadStore();
     const farmersCount = memoryStore.users.filter(u => u.role === 'farmer').length + 150;
     const buyersCount = memoryStore.users.filter(u => u.role === 'buyer').length + 120;
     const totalOrdersCount = memoryStore.orders.length + 200;
@@ -311,7 +334,7 @@ const db = {
   // Reset to default seed
   resetSeed: async () => {
     memoryStore = JSON.parse(JSON.stringify(initialData));
-    saveStore();
+    await saveStore();
     return true;
   }
 };
@@ -320,3 +343,4 @@ module.exports = {
   connectDB,
   db
 };
+
